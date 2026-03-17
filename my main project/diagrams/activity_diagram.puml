@@ -1,0 +1,29 @@
+@startuml
+!theme sketchy
+
+start
+:Load CSV dataset;
+:Clean columns / types;
+:Impute missing (KNN);
+:Encode categorical (LabelEncoder);
+:Balance classes (SMOTE-Tomek);
+:Train/Test split;
+
+fork
+  :Train Naive Bayes/SVM/RF/ExtraTrees;
+fork again
+  :Cross-validate (ROC-AUC);
+end fork
+
+:Select best model (ROC-AUC);
+:Evaluate on test set;
+:Save model (.pkl) & artifacts;
+
+:User submits form (A1..A10 + demographics);
+:Preprocess to expected_features;
+:Predict ASD / No ASD + probability;
+
+:Generate SHAP (global + local) & LIME;
+:Render results in UI;
+stop
+@enduml

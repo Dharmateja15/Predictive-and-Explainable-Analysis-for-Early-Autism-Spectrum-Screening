@@ -1,0 +1,20 @@
+@startuml
+!theme blueprint
+
+left to right direction
+actor "User\n(Clinician/Parent/Researcher)" as User
+
+rectangle "ASD Prediction & XAI System" {
+  usecase "Provide Questionnaire\n(A1..A10)" as UC1
+  usecase "Provide Demographics\n(age, gender, etc.)" as UC2
+  usecase "Request Prediction" as UC3
+  usecase "View Explanation\n(SHAP/LIME)" as UC4
+  usecase "Download Results" as UC5
+}
+
+User --> UC1
+User --> UC2
+User --> UC3
+UC3 --> UC4
+UC4 --> UC5
+@enduml

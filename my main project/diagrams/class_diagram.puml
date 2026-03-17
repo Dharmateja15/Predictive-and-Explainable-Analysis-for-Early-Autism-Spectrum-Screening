@@ -1,0 +1,30 @@
+@startuml
+!theme plain
+
+class DataPreprocessor {
+  +load_data(file: str)
+  +clean_data()
+  +encode_categoricals()
+  +impute_missing()
+}
+
+class ModelTrainer {
+  +train_models()
+  +evaluate_models()
+  +select_best_model()
+}
+
+class Explainability {
+  +run_shap()
+  +run_lime()
+}
+
+class Predictor {
+  +predict(input_data)
+  +save_results()
+}
+
+DataPreprocessor --> ModelTrainer : prepares data
+ModelTrainer --> Predictor : provides best model
+Predictor --> Explainability : sends predictions
+@enduml
